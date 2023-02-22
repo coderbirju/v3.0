@@ -13,6 +13,18 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
+      name: "ERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20__factory>;
+    getContractFactory(
+      name: "IERC20Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Metadata__factory>;
+    getContractFactory(
+      name: "IERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
       name: "ERC721",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC721__factory>;
@@ -41,10 +53,33 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.BasicNft__factory>;
     getContractFactory(
+      name: "HuskyCoin",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.HuskyCoin__factory>;
+    getContractFactory(
+      name: "NFTDutchAuction_ERC20Bid",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.NFTDutchAuction_ERC20Bid__factory>;
+    getContractFactory(
       name: "NFTDutchAuction",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.NFTDutchAuction__factory>;
 
+    getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "IERC20Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Metadata>;
+    getContractAt(
+      name: "IERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20>;
     getContractAt(
       name: "ERC721",
       address: string,
@@ -80,6 +115,16 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.BasicNft>;
+    getContractAt(
+      name: "HuskyCoin",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.HuskyCoin>;
+    getContractAt(
+      name: "NFTDutchAuction_ERC20Bid",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.NFTDutchAuction_ERC20Bid>;
     getContractAt(
       name: "NFTDutchAuction",
       address: string,
