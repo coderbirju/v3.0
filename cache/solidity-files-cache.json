@@ -516,8 +516,8 @@
       ]
     },
     "/Users/arjunbirju/Desktop/MSIS/INFO7500/Assignments/v3.0/contracts/NFTDutchAuction_ERC20Bids.sol": {
-      "lastModificationDate": 1677039677548,
-      "contentHash": "78bd3586cc4f36c57505a13ec95f2cf6",
+      "lastModificationDate": 1677090961907,
+      "contentHash": "3cbb29385b90f19dc5f7d365875448ef",
       "sourceName": "contracts/NFTDutchAuction_ERC20Bids.sol",
       "solcConfig": {
         "version": "0.8.17",
