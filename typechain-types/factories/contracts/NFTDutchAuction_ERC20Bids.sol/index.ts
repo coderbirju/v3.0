@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { NFTDutchAuction_ERC20Bid__factory } from "./NFTDutchAuction_ERC20Bid__factory";
+export { NFTDutchAuction_ERC20Bids__factory } from "./NFTDutchAuction_ERC20Bids__factory";

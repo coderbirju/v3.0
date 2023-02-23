@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { NFTDutchAuction_ERC20Bid } from "./NFTDutchAuction_ERC20Bid";
+export type { NFTDutchAuction_ERC20Bids } from "./NFTDutchAuction_ERC20Bids";

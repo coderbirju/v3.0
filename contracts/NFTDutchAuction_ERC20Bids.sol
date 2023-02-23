@@ -9,7 +9,7 @@ import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract NFTDutchAuction_ERC20Bid {
+contract NFTDutchAuction_ERC20Bids {
     IERC721 public erc721TokenAddress;
     IERC20 public erc20TokenAddress;
     uint256 public nftTokenId;
@@ -49,37 +49,25 @@ contract NFTDutchAuction_ERC20Bid {
         currentPrice = initialPrice;
         auctionEnded = false;
     }
-
-    function bid() public payable returns(address) {
-        // if(auctionEnded && winnerAddress != address(0) && msg.sender != winnerAddress) {
-        //     address payable refundCaller = payable(msg.sender);
-        //     refundCaller.transfer(address(this).balance);
-        //     return winnerAddress;
-        // }
-        // check if the auction has ended
+    
+    function bid(uint256 tokenAmount) public returns (address) {
         require(!auctionEnded, "Auction has ended");
-        // check if the block number is within the time limit
         require(block.number < auctionEndBlock, "Auction has ended");
         updatePrice();
-        // check if the bid is higher than the reserve price
-        require(msg.value >= currentPrice, "Bid is lower than current price");
+        require(tokenAmount >= currentPrice, "Bid is lower than current price");
         require(winnerAddress == address(0), "Auction has already been won");
-	    // if the bid value is higher end the auction and transfer the funds to the owner
+        require(erc20TokenAddress.allowance(msg.sender, address(this)) >= tokenAmount, "Insufficient allowance");
+        // console.log('erc20TokenAddress.allowance(msg.sender, address(this)): ', erc20TokenAddress.allowance(msg.sender, address(this)));
+        require(erc20TokenAddress.transferFrom(msg.sender, addressOfOwner, tokenAmount), "Transfer failed");
         auctionEnded = true;
         winnerAddress = payable(msg.sender);
-        erc20TokenAddress.approve(address(this), msg.value);
-        erc20TokenAddress.transferFrom(msg.sender, addressOfOwner, msg.value);
-        // addressOfOwner.transfer(msg.value);
         erc721TokenAddress.transferFrom(addressOfOwner, winnerAddress, nftTokenId);
-        winningBidAmount = msg.value;
+        winningBidAmount = tokenAmount;
         return winnerAddress;
     }
-    
+
+
     function updatePrice() internal {
-        // if (block.number >= auctionEndBlock) {
-        //     auctionEnded = true;
-        //     return;
-        // }
         currentPrice = initialPrice - (offerPriceDecrement * (block.number - startBlockNumber));
     }
 }

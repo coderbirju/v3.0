@@ -57,13 +57,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.HuskyCoin__factory>;
     getContractFactory(
-      name: "NFTDutchAuction_ERC20Bid",
+      name: "NFTDutchAuction_ERC20Bids",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.NFTDutchAuction_ERC20Bid__factory>;
-    getContractFactory(
-      name: "NFTDutchAuction",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.NFTDutchAuction__factory>;
+    ): Promise<Contracts.NFTDutchAuction_ERC20Bids__factory>;
 
     getContractAt(
       name: "ERC20",
@@ -121,15 +117,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.HuskyCoin>;
     getContractAt(
-      name: "NFTDutchAuction_ERC20Bid",
+      name: "NFTDutchAuction_ERC20Bids",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.NFTDutchAuction_ERC20Bid>;
-    getContractAt(
-      name: "NFTDutchAuction",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.NFTDutchAuction>;
+    ): Promise<Contracts.NFTDutchAuction_ERC20Bids>;
 
     // default types
     getContractFactory(

@@ -476,48 +476,9 @@
         "Math"
       ]
     },
-    "/Users/arjunbirju/Desktop/MSIS/INFO7500/Assignments/v3.0/contracts/NFTDutchAuction.sol": {
-      "lastModificationDate": 1677008116238,
-      "contentHash": "325ad799f8b7e2223c391d7a2a4f648d",
-      "sourceName": "contracts/NFTDutchAuction.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "hardhat/console.sol",
-        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/ERC721.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "NFTDutchAuction"
-      ]
-    },
     "/Users/arjunbirju/Desktop/MSIS/INFO7500/Assignments/v3.0/contracts/NFTDutchAuction_ERC20Bids.sol": {
-      "lastModificationDate": 1677090961907,
-      "contentHash": "3cbb29385b90f19dc5f7d365875448ef",
+      "lastModificationDate": 1677187242724,
+      "contentHash": "b476eaf8914c4b1c776bd5300755a95e",
       "sourceName": "contracts/NFTDutchAuction_ERC20Bids.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -553,7 +514,7 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "NFTDutchAuction_ERC20Bid"
+        "NFTDutchAuction_ERC20Bids"
       ]
     },
     "/Users/arjunbirju/Desktop/MSIS/INFO7500/Assignments/v3.0/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
