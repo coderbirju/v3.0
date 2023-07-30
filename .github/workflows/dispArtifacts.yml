@@ -12,6 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Fetch latest repository information
+        run: git fetch --prune --unshallow
+
       - name: List Artifacts
         run: |
           # Get the latest commit SHA on the main branch
