@@ -42,7 +42,7 @@ jobs:
           # Optional, will use the specified branch. Defaults to all branches
           # Optional, defaults to all types
           event: push
-          name: benchmark-result
+          name: benchmark-result_25080f3649bc9da17a5e6e345640402612172df4
           # Optional, name is treated as a regular expression if set true
           name_is_regexp: true
           # Optional, a directory where to extract artifact(s), defaults to the current directory
