@@ -1,0 +1,33 @@
+name: List Uploaded Artifacts
+on:
+ pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  list_artifacts:
+    name: List Artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch latest repository information
+        run: git fetch --prune --unshallow
+
+      - name: List Artifacts
+        run: |
+          # Get the latest commit SHA on the main branch
+          main_branch_commit=$(git rev-parse origin/main)
+
+          # Call GitHub's REST API to get the artifacts of the latest workflow run on the main branch
+          artifacts_json=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                          "https://api.github.com/repos/${{ github.repository }}/actions/runs?branch=main&event=push&status=completed" \
+                          | jq '.workflow_runs[0].artifacts')
+
+          # Loop through the artifacts and display their names
+          echo "List of uploaded artifacts:"
+          echo "$artifacts_json" | jq -r '.[].name'
+
+          # Optionally, you can save the artifact names to a file for further processing
+          echo "$artifacts_json" | jq -r '.[].name' > $GITHUB_WORKSPACE/artifacts_list.txt

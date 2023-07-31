@@ -1,0 +1,67 @@
+name: Regression test
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+env:
+  Sha: ${{ github.event.pull_request.head.sha }}
+      
+
+jobs:
+  benchmark:
+    name: Run Benchmarks on PR
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: true
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.18.10'
+      - run: echo 'go version  $(go version)'
+  update-benchmark-result:
+    name: Update latest benchmark result
+    needs: benchmark
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update benchmark result
+        uses: actions/upload-artifact@v3
+        with:
+          name: benchmark-result_${{ env.Sha }}
+          path: ${{ github.workspace }}/results.json
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          # Optional, GitHub token, a Personal Access Token with `public_repo` scope if needed
+          # Required, if the artifact is from a different repo
+          # Required, if the repo is private a Personal Access Token with `repo` scope is needed or GitHub token in a job where the permissions `action` scope set to `read`
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          # Optional, will use the specified branch. Defaults to all branches
+          # Optional, defaults to all types
+          event: push
+          name: benchmark-result
+          # Optional, name is treated as a regular expression if set true
+          name_is_regexp: true
+          # Optional, a directory where to extract artifact(s), defaults to the current directory
+          path: ${{ github.workspace }}
+          # Optional, defaults to current repo
+          repo: ${{ github.repository }}
+          # Optional, check the workflow run to whether it has an artifact
+          # then will get the last available artifact from the previous workflow
+          # default false, just try to download from the last one
+          check_artifacts: false
+          # Optional, search for the last workflow run whose stored an artifact named as in `name` input
+          # default false
+          search_artifacts: false
+          # Optional, choose to skip unpacking the downloaded artifact(s)
+          # default false
+          skip_unpack: false
+          # Optional, choose how to exit the action if no artifact is found
+          # can be one of:
+          #  "fail", "warn", "ignore"
+          # default fail
+          if_no_artifact_found: fail
+      
